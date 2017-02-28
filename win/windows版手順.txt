@@ -1,0 +1,26 @@
+
+①必要なパッケージのインストール
+ cd <作業フォルダを指定>
+ npm init
+ npm install -g browserify 
+ npm install -D babelify babel-preset-es2015 watchify
+ npm install --save react react-dom babel-preset-react
+
+②package.jsonをテキストエディッタで開き、設定を追加する。
+a.presetsを追記。
+  {
+  "babel": {                                       
+      "presets": ["es2015", "react"]      
+  }, 
+
+b.scriptsにbuildとwatchコマンドを追記。
+ "scripts": {
+     "build": "browserify src/app.js -t babelify -o src/bundle.js -v", 
+     "watch": "watchify src/app.js -t babelify -o src/bundle.js -v", 
+     "test": "echo \"Error: no test specified\" && exit 1"
+ },
+
+③ビルドを実行する。
+ npm run build
+
+sample.htmlを開き、テキストが追加されれば成功。
